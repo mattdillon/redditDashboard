@@ -1,6 +1,9 @@
 import requests
 import requests.auth
 import r_credentials
+import datetime
+import time
+from datetime import datetime, timedelta, timezone
 
 ROOT_URL = "https://www.reddit.com"
 
@@ -25,6 +28,16 @@ def get_r_token(username, password, appClientId, appSecret):
 		raise
 		return 1
 	
+
+def get_time_limits():
+	yesterday = datetime.now(timezone.utc).date() - timedelta(days=1)
+	today = datetime.now(timezone.utc).date()	
+
+	yesterday_linux = time.mktime(yesterday.timetuple())
+	today_linux = time.mktime(today.timetuple())
+
+	return yesterday_linux, today_linux
+
 
 if __name__ == '__main__':
 	username = r_credentials.reddit_credentials['username']
