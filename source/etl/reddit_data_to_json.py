@@ -7,6 +7,7 @@ from datetime import datetime, timedelta, timezone, date
 import praw
 import json
 from sosna_helpers import log
+import argparse
 
 ROOT_URL = "https://www.reddit.com"
 LOG_FILE = "logs/reddit_etl_log_"
@@ -64,13 +65,27 @@ if __name__ == '__main__':
 	password = r_credentials.reddit_credentials['password']
 	appClientId = r_credentials.reddit_credentials['appClientId']
 	appSecret = r_credentials.reddit_credentials['appSecret']
+
+	parser = argparse.ArgumentParser()
+	parser.add_argument('-s', action='store', dest='subreddit', help='Subreddit to collect posts from')
+	parser.add_argument('-n', action='store', dest='post_count', help='Number of posts to collect') 
+
+	args = parser.parse_args()
+	subreddit = args.subreddit
+	post_count = int(args.post_count)
 	
+	for arg in vars(args):
+		log(LOG_FILE, arg + ' : ' + getattr(args, arg))
+	
+		
+	
+		
 	token = get_r_token(username, password, appClientId, appSecret)
 
 	start, end = get_time_limits(datetime.now(timezone.utc).date()-timedelta(days=1))
 
-	posts = fetch_r_posts('hiking', 200)
-	output_file = './output/r_hiking_output_' + str(date.today()) + '.txt'
+	posts = fetch_r_posts(subreddit, post_count)
+	output_file = './output/r_' + subreddit + '_output_' + str(date.today()) + '.txt'
 	f = open(output_file, 'w', encoding='utf-8')
 	data = []
 	for p in posts:

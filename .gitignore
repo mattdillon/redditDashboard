@@ -2,3 +2,5 @@ r_credentials.py
 logs/*
 output/*
 __pycache__
+
+!.keep
