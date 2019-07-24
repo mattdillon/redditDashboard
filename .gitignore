@@ -1,4 +1,4 @@
 r_credentials.py
-logs/
-output/
+logs/*
+output/*
 __pycache__
