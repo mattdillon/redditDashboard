@@ -1,0 +1,33 @@
+2019-07-24 22-45-16
+subreddit : hiking
+
+2019-07-24 22-45-16
+post_count : 10
+
+2019-07-24 22-45-16
+Retrieving access_token for user: charlieaxle
+
+2019-07-24 22-45-16
+Retrieved token: 249573054626-HpZOYAW94-gELSk_8BFSOFxlhRU
+
+2019-07-24 22-45-16
+Getting time limits...
+
+2019-07-24 22-45-16
+Start: 1563753600.0
+End: 1563840000.0
+
+2019-07-24 22-45-16
+Fetching last 10 posts for r/hiking
+
+2019-07-24 22-45-17
+Writing 0 objects to: ./output/r_hiking_output_2019-07-24.txt
+
+2019-07-24 22-45-17
+reddit_to_s3 sript completed
+
+##################################################
+##################################################
+##################################################
+
+
