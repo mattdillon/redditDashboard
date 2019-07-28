@@ -17,6 +17,6 @@ def upload_to_bucket(key, bucket):
 
 if __name__ == '__main__':
 	
-	s3_key  =  'output/r_hiking_output_' + str(date.today() - timedelta(days=1)) + '.txt'
+	s3_key  =  'output/r_hiking_output_' + str(date.today()) + '.txt'
 	#print('Uploading {} to s3 {} bucket'.format(file_name, 'sosna-reddit-data'))
 	upload_to_bucket(s3_key, 'sosna-reddit-data') 

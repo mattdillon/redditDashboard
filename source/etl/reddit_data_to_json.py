@@ -7,11 +7,12 @@ from datetime import datetime, timedelta, timezone, date
 import praw
 import json
 from sosna_helpers import log
+import email_audit as ea
 import argparse
 
 ROOT_URL = "https://www.reddit.com"
 LOG_FILE = "logs/reddit_etl_log_"
-
+MESSAGE_TEMPLATE = 'email_templates/etl_job.txt'
 
 #get access token
 def get_r_token(username, password, appClientId, appSecret):
@@ -61,6 +62,7 @@ def fetch_r_posts(subreddit, num):
 
 
 if __name__ == '__main__':
+	job_start = datetime.now()
 	username = r_credentials.reddit_credentials['username']
 	password = r_credentials.reddit_credentials['password']
 	appClientId = r_credentials.reddit_credentials['appClientId']
@@ -103,3 +105,11 @@ if __name__ == '__main__':
 	
 	spacer = '#'*50+'\n'
 	log(LOG_FILE, 'reddit_to_s3 sript completed\n\n' + spacer*3)
+	
+	job_end = datetime.now()
+	
+	d = {'start':job_start, 'end':job_end, 'job_name': __file__, 'count': post_count}
+	log(LOG_FILE, 'Preparing email template...')
+	msg = ea.read_message_template(MESSAGE_TEMPLATE, d)
+	ea.send_audit_email(msg)
+	log(LOG_FILE, 'Email audit sent.')

@@ -1,0 +1,12 @@
+Hi,
+
+Below are results of ETL job...
+
+ETL Job: {job_name}
+Start: {start}
+End: {end}
+Record Count: {count}
+
+Thanks,
+Sosna
+
