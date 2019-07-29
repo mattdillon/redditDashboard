@@ -6,7 +6,7 @@ from r_credentials import audit_dist_list
 
 FROM = 'etl@sosna.us'
 
-TO = ['dillonmc26@gmail.com']
+TO = ['']
 
 #for contact in audit_dist_list.recipients:
 #	TO.append(contact['email']
